@@ -3,12 +3,12 @@ opencmdhere() {
         WinHWND := WinActive()
         For win in ComObjCreate("Shell.Application").Windows
             If (win.HWND = WinHWND) {
-		currdir := SubStr(win.LocationURL, 9)
-		currdir := RegExReplace(currdir, "%20", " ")
+                currdir := SubStr(win.LocationURL, 9)
+                currdir := RegExReplace(currdir, "%20", " ")
                 Break
             }
     }
-    Run, cmd, % currdir ? currdir : "C:\"
+    Run cmd.exe /k pushd %currdir% 
 }
 
 opencmdhereadmin() {
@@ -16,9 +16,9 @@ opencmdhereadmin() {
         WinHWND := WinActive()
         For win in ComObjCreate("Shell.Application").Windows
             If (win.HWND = WinHWND) {
-		currdir := SubStr(win.LocationURL, 9)
-		currdir := RegExReplace(currdir, "%20", " ")
-		currdir := RegExReplace(currdir, "/", "\")
+                currdir := SubStr(win.LocationURL, 9)
+                currdir := RegExReplace(currdir, "%20", " ")
+                currdir := RegExReplace(currdir, "/", "\")
                 Break
             }
     }
